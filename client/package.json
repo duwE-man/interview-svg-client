@@ -5,22 +5,33 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@types/ws": "^8.5.3",
     "Base64": "^1.1.0",
     "Buffer": "^0.0.0",
     "fabric": "^5.2.1",
+    "jest": "^28.1.1",
+    "jsdom": "^19.0.0",
     "sass": "^1.52.1",
     "vue": "^3.2.25",
     "ws": "^8.7.0"
   },
   "devDependencies": {
     "@types/fabric": "^4.5.7",
+    "@types/jest": "^28.1.1",
     "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "jest-environment-jsdom": "^28.1.1",
+    "jest-websocket-mock": "^2.3.0",
+    "ts-jest": "^28.0.4",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
+    "vitest": "^0.14.1",
+    "vue-jest": "^5.0.0-alpha.10",
+    "vue-tsc": "^0.34.7",
+    "vue3-jest": "^27.0.0-alpha.1"
   }
 }

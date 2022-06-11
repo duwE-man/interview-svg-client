@@ -2,19 +2,20 @@ import { ref } from "vue"
 const conn = new WebSocket('ws://localhost:8081');
 
 const message = ref<string>()
+const name = ref<string>()
+const date = ref<string>()
 
 if (conn) {
-  conn.onopen = function (evt) {
-    console.log('Connection open ...');
-    conn.send('Hello WebSockets!');
-  }
-  conn.onclose = function (evt) {
-    console.log('Connection closed.');
-  };
   conn.onmessage = async (evt) => {
     const response = await evt.data
-    message.value = await response.text()
+    const text = await response.text()
+    if (text) {
+      const json = JSON.parse(text)
+      message.value = json.svg
+      name.value = json.name
+      date.value = json.date
+    }
   }
 }
 
-export { conn, message }
+export { conn, message, name, date }

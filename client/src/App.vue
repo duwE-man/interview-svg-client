@@ -2,12 +2,16 @@
 import { ref, onMounted, watch } from "vue"
 import { fabric } from "fabric"
 
-import { conn, message } from "./helpers/websocket-api"
+import { conn, message, name, date } from "./helpers/websocket-api"
+import { sendToServer } from "./components/useApi"
+
+import ImageShower from "./components/ImageShower.vue"
 
 const canvasElement = ref<HTMLCanvasElement>()
 const area = ref<HTMLDivElement>()
 const canvas = ref<any>(null)
-const imageServer = ref<HTMLDivElement>()
+
+const username = ref("")
 
 onMounted(() => {
   if (canvasElement.value) {
@@ -21,15 +25,8 @@ onMounted(() => {
 })
 
 const sendImageToServer = () => {
-  conn.send(canvas.value.toSVG())
+  sendToServer(conn, {name: username.value, svg: canvas.value.toSVG(), date: "" + new Date()})
 }
-
-watch(message, (value) => {
-  if (value) {
-    const svgNode = document.createRange().createContextualFragment(value);
-    imageServer.value?.appendChild(svgNode)
-  }
-})
 </script>
 
 <template>
@@ -37,16 +34,16 @@ watch(message, (value) => {
     <div class="drawing-canvas">
       <h1>Drawing canvas</h1>
       <div ref="area" class="drawing-area">
-        <canvas ref="canvasElement">
-          Hello wolrd
+        <canvas data-test="canvas" ref="canvasElement">
         </canvas>
       </div>
       <div>
         <button @click="sendImageToServer">Send image to server</button>
+        <input type="text" v-model="username" />
       </div>
     </div>
-    <div ref="imageServer">
-      
+    <div>
+      <image-shower :message="message" :username="name" :date="date"></image-shower>
     </div>
   </div>
 </template>
