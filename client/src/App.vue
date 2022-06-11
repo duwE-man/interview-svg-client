@@ -2,8 +2,7 @@
 import { ref, onMounted, watch } from "vue"
 import { fabric } from "fabric"
 
-import { conn, message, name, date } from "./helpers/websocket-api"
-import { sendToServer } from "./components/useApi"
+import { sendToServer, conn, message, name, date } from "./components/useApi"
 
 import ImageShower from "./components/ImageShower.vue"
 
