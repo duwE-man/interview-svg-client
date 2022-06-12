@@ -31,4 +31,4 @@ A few things what i decided to do:
 5. i used vitest for tests, i tested only sending message to server and then printing to component
 5. A) i missed drawing, it's because i used fabric js
 6. logging: don't understand what you mean with logging but on the client side you can create class logger where you can log, on call probably
-something like Logger.info("info") or Logger.error("error"), but don't understand from your task what do you mean by make a proposal in for logging.
+something like Logger.info("info") or Logger.error("error"), logger class will store logs (could be defined how many and stuff like that)
